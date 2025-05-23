@@ -31,6 +31,15 @@ interface EditServiceDialogProps {
   onServiceUpdated: () => void
 }
 
+interface ServiceUpdateData {
+  status: ServiceStatus
+  code?: string
+  name?: string
+  price?: number
+  assignedUser?: string
+  warehouseItemId?: string
+}
+
 const statusOptions: { value: ServiceStatus; label: string }[] = [
   { value: "pending", label: "Pending" },
   { value: "in_progress", label: "In Progress" },
@@ -81,7 +90,7 @@ export function EditServiceDialog({
     if (!service || !user) return
 
     const isAdmin = user.role === "admin"
-    const updates: any = {
+    const updates: ServiceUpdateData = {
       status,
     }
 
@@ -209,4 +218,4 @@ export function EditServiceDialog({
       </DialogContent>
     </Dialog>
   )
-} 
+}
